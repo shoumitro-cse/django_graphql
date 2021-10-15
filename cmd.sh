@@ -1,4 +1,7 @@
+# https://docs.graphene-python.org/projects/django/en/latest/installation/
+
 # https://www.section.io/engineering-education/integrating-graphql-api-in-a-django-application/
+
 # https://www.twilio.com/blog/graphql-apis-django-graphene
 
 mkdir django_graphql
@@ -19,7 +22,8 @@ http://127.0.0.1:7000/graphql
 
 
 
-
+USE: books_api
+PW: QWERTYU12345678
 
 
  # data.json
