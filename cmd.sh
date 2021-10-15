@@ -14,8 +14,13 @@ cd books_api
 python manage.py startapp api
 python manage.py makemigrations
 python manage.py migrate
+
+# load json data into sqlite3
 python manage.py loaddata data.json
 
+# Introspection Schema 
+python manage.py graphql_schema
+python manage.py graphql_schema --schema api.schema.schema --out schema.json
 
 python manage.py runserver 127.0.0.1:7000
 http://127.0.0.1:7000/graphql
