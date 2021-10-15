@@ -137,6 +137,17 @@ mutation createMutation {
 }
 
 
+
+mutation createUser {
+  createUser(username: "test5", password: "1234", email: "ab@gmail.com") {
+    token
+    user {
+      username
+    }
+  }
+}
+
+
 # get current user
 query {
   me {
