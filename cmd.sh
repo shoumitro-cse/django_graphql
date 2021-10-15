@@ -22,7 +22,7 @@ http://127.0.0.1:7000/graphql
 
 
 
-USE: books_api
+USER: shoumitro
 PW: QWERTYU12345678
 
 
