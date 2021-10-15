@@ -198,6 +198,7 @@ JSON Web Token (JWT) is a JSON encoded representation of a claim(s) that can be 
 JWTs can be broken down into three parts: header, payload, and signature. Each part is separated from the other by dot (.), and will follow the below structure:
 
 https://www.softwaresecured.com/security-issues-jwt-authentication/
+
 https://jwt.io/
 
 Example:
