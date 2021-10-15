@@ -100,3 +100,40 @@ mutation {
     token
   }
 }
+
+
+# show user list
+
+query {
+  users {
+    id
+    username
+    email
+    lastName
+    firstName
+    password
+  }
+}
+
+
+## Creating a user
+mutation createMutation {
+  createUser(username:"test", password:"123456", email:"abc@gmail.com") {
+    user {
+      id
+			username
+      password
+      email
+      isSuperuser
+      isStaff
+      isActive
+      firstName
+      lastName
+      lastLogin
+      dateJoined
+      __typename
+    }
+  }
+}
+
+
