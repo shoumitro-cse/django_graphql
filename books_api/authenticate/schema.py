@@ -3,6 +3,8 @@ import graphql_jwt
 
 from django.contrib.auth import get_user_model
 from graphene_django import DjangoObjectType
+from graphql_jwt.refresh_token.shortcuts import create_refresh_token
+from graphql_jwt.shortcuts import get_token
 
 
 class UserType(DjangoObjectType):
@@ -26,6 +28,8 @@ class Query(graphene.ObjectType):
 
 class CreateUserMutation(graphene.Mutation):
     user = graphene.Field(UserType)
+    token = graphene.String()
+    # refresh_token = graphene.String()
 
     class Arguments:
         username = graphene.String(required=True)
@@ -41,7 +45,10 @@ class CreateUserMutation(graphene.Mutation):
         user.set_password(password)
         user.save()
 
-        return CreateUserMutation(user=user)
+        token = get_token(user)
+        # refresh_token = create_refresh_token(user)
+
+        return CreateUserMutation(user=user, token=token)
 
 
 class Mutation(graphene.ObjectType):
