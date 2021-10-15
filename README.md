@@ -7,7 +7,9 @@ GraphQL has three primary operations: Queries for reading data, Mutations for wr
 In this tutorial we will use Graphene, a GraphQL framework for Python, to build a Django API that uses queries and mutations. some query example are given below..
 
 
-
+# API
+python manage.py runserver 127.0.0.1:7000
+http://127.0.0.1:7000/graphql
 
 
 ##  The GraphQL code below is requesting all the books from the database.
