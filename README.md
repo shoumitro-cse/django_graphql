@@ -1,4 +1,4 @@
-# Django GraphQL
+# Building GraphQL APIs in Django with Graphene
 
 GraphQL is an open-source data query and manipulation language for APIs, and a runtime for fulfilling queries with existing data. It was developed internally by Facebook in 2012 before being publicly released in 2015. It allows clients to define the structure of the data required, and the same structure of the data is returned from the server, therefore preventing unnecessary data from being returned.
 
