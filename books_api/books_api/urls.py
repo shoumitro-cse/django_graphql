@@ -17,7 +17,9 @@ from django.contrib import admin
 from django.urls import path
 from graphene_django.views import GraphQLView
 
-from api.schema import schema
+# from books_api import schema
+# from api.schema import schema
+from authenticate.schema import schema
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -43,8 +43,17 @@ INSTALLED_APPS = [
 ]
 
 GRAPHENE = {
-    "SCHEMA": "api.schema.schema"
+    # "SCHEMA": "api.schema.schema", # schema add
+    "SCHEMA": "books_api.schema.schema", # schema add
+    "MIDDLEWARE": [ # for jwt token
+        "graphql_jwt.middleware.JSONWebTokenMiddleware",
+    ],
 }
+
+AUTHENTICATION_BACKENDS = [
+    "graphql_jwt.backends.JSONWebTokenBackend",
+    "django.contrib.auth.backends.ModelBackend",
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

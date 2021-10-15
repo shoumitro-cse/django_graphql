@@ -72,3 +72,31 @@ mutation deleteMutation{
     }
   }
 }
+
+
+## We will use TokenAuth to authenticate the User with its username and password and obtain the JSON Web Token.
+mutation {
+  tokenAuth(username:"shoumitro", password: "QWERTYU12345678") {
+    token
+    payload
+    refreshExpiresIn
+  }
+}
+
+
+# We will use VerifyToken to verify that the token passed as an argument is a valid token.
+mutation {
+  verifyToken(token:"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InNob3VtaXRybyIsImV4cCI6MTYzNDI5Mjk4MCwib3JpZ0lhdCI6MTYzNDI5MjY4MH0.FHHJOJcleu1ukk8sXHvzwUFEgKKXjZlqRgBwSrqA3Hw") {
+    payload
+  }
+}
+
+
+# refreshToken to obtain a brand new token with renewed expiration time:
+mutation {
+  refreshToken(token:"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InNob3VtaXRybyIsImV4cCI6MTYzNDI5Mjk4MCwib3JpZ0lhdCI6MTYzNDI5MjY4MH0.FHHJOJcleu1ukk8sXHvzwUFEgKKXjZlqRgBwSrqA3Hw") {
+    payload
+    refreshExpiresIn
+    token
+  }
+}
