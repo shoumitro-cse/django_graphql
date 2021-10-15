@@ -9,15 +9,18 @@ In this tutorial we will use Graphene, a GraphQL framework for Python, to build 
 
 # API
 python manage.py runserver 127.0.0.1:7000
+
 http://127.0.0.1:7000/graphql
 
 # Username & Password
 USER: shoumitro
+
 PW: QWERTYU12345678
 
 
 ##  The GraphQL code below is requesting all the books from the database.
 query {
+
   allBooks {
     id
     title
@@ -25,6 +28,7 @@ query {
     yearPublished
     review
   }
+
 }
 
 
