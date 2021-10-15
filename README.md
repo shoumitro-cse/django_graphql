@@ -137,3 +137,43 @@ mutation createMutation {
 }
 
 
+# get current user
+query {
+  me {
+    id
+    username
+    email
+    lastName
+    firstName
+    password
+  }
+}
+
+
+# combine query
+query {
+  
+  allBooks {
+    id
+    title
+    author
+    yearPublished
+    review
+  }, 
+  users {
+    id
+    username
+    email
+    lastName
+    firstName
+    password
+ },
+ me {
+    id
+    username
+    email
+    lastName
+    firstName
+    password
+  },
+}

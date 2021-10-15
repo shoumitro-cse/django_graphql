@@ -4,6 +4,8 @@
 
 # https://www.twilio.com/blog/graphql-apis-django-graphene
 
+# https://github.com/Moesif/moesif-graphene-django-example
+
 mkdir django_graphql
 cd django_graphql
 /home/shoumitro/.pyenv/versions/3.6.12/bin/python -m venv env
