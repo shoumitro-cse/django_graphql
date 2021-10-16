@@ -63,6 +63,7 @@ mutation {
     token
     payload
     refreshExpiresIn
+    refreshToken
   }
 }
 
@@ -74,7 +75,6 @@ mutation {
     token
     payload
     refreshExpiresIn
-
   }
 }
 
@@ -90,6 +90,31 @@ mutation {
 # refreshToken to obtain a brand new token with renewed expiration time:
 mutation {
   refreshToken(token:"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InNob3VtaXRybyIsImV4cCI6MTYzNDI5Mjk4MCwib3JpZ0lhdCI6MTYzNDI5MjY4MH0.FHHJOJcleu1ukk8sXHvzwUFEgKKXjZlqRgBwSrqA3Hw") {
+    payload
+    refreshExpiresIn
+    token
+  }
+}
+
+# https://hasura.io/blog/how-to-setup-authentication-with-django-graphene-and-hasura-graphql/
+# last token example after add => graphql_jwt.refresh_token.apps.RefreshTokenConfig app inside INSTALLED_APPS
+mutation {
+  tokenAuth(username:"shoumitro", password: "QWERTYU12345678") {
+    token
+    payload
+    refreshExpiresIn
+    refreshToken
+  }
+}
+
+mutation {
+    verifyToken(token:"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InNob3VtaXRybyIsInN1YiI6IjEiLCJzdWJfbmFtZSI6InNob3VtaXRybyIsInN1Yl9lbWFpbCI6IiIsImV4cCI6MTYzNDM2MDc0NCwiaHR0cHM6Ly9oYXN1cmEuaW8vand0L2NsYWltcyI6eyJ4LWhhc3VyYS11c2VyLWlkIjoiMSJ9fQ.lpufgZHYLDnFK--i6K1PI0fXNBpzJVYyLjJngWvSX5M") {
+    payload
+  }
+}
+
+mutation {
+  refreshToken(refreshToken:"801c1648d2017cd9f5b202eda33ac65387acb05d") {
     payload
     refreshExpiresIn
     token
@@ -115,7 +140,7 @@ mutation createMutation {
   createUser(username:"test", password:"123456", email:"abc@gmail.com") {
     user {
       id
-			username
+	  username
       password
       email
       isSuperuser
@@ -140,6 +165,27 @@ mutation createUser {
   }
 }
 
+mutation createMutation {
+  createUser(username:"test6", password:"123456", email:"abc@gmail.com") {
+    token
+    refreshToken
+    user {
+      id
+	  username
+      password
+      email
+      isSuperuser
+      isStaff
+      isActive
+      firstName
+      lastName
+      lastLogin
+      dateJoined
+      __typename
+    }
+  }
+}
+
 
 # get current user
 query {
@@ -156,14 +202,14 @@ query {
 
 # combine query
 query {
-  
+
   allBooks {
     id
     title
     author
     yearPublished
     review
-  }, 
+  },
   users {
     id
     username
@@ -181,6 +227,4 @@ query {
     password
   },
 }
-
-
 

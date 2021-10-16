@@ -29,7 +29,7 @@ class Query(graphene.ObjectType):
 class CreateUserMutation(graphene.Mutation):
     user = graphene.Field(UserType)
     token = graphene.String()
-    # refresh_token = graphene.String()
+    refresh_token = graphene.String()
 
     class Arguments:
         username = graphene.String(required=True)
@@ -46,9 +46,9 @@ class CreateUserMutation(graphene.Mutation):
         user.save()
 
         token = get_token(user)
-        # refresh_token = create_refresh_token(user)
+        refresh_token = create_refresh_token(user)
 
-        return CreateUserMutation(user=user, token=token)
+        return CreateUserMutation(user=user, token=token, refresh_token=refresh_token)
 
 
 class ObtainJSONWebToken(graphql_jwt.JSONWebTokenMutation):
@@ -62,8 +62,8 @@ class ObtainJSONWebToken(graphql_jwt.JSONWebTokenMutation):
 class Mutation(graphene.ObjectType):
     create_user = CreateUserMutation.Field()
 
-    # token_auth = graphql_jwt.ObtainJSONWebToken.Field()
-    token_auth = graphql_jwt.relay.ObtainJSONWebToken.Field()
+    token_auth = graphql_jwt.ObtainJSONWebToken.Field()
+    # token_auth = graphql_jwt.relay.ObtainJSONWebToken.Field()
     # token_auth = ObtainJSONWebToken.Field()
     verify_token = graphql_jwt.Verify.Field()
     refresh_token = graphql_jwt.Refresh.Field()

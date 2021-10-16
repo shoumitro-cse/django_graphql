@@ -6,6 +6,8 @@
 
 # https://github.com/Moesif/moesif-graphene-django-example
 
+# https://hasura.io/blog/how-to-setup-authentication-with-django-graphene-and-hasura-graphql/
+
 mkdir django_graphql
 cd django_graphql
 /home/shoumitro/.pyenv/versions/3.6.12/bin/python -m venv env

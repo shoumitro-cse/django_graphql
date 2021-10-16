@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import os
+from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
 
     'api',
     'graphene_django',
+    'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
 ]
 
 GRAPHENE = {
@@ -48,6 +50,19 @@ GRAPHENE = {
     "MIDDLEWARE": [ # for jwt token
         "graphql_jwt.middleware.JSONWebTokenMiddleware",
     ],
+}
+
+
+GRAPHQL_JWT = {
+    'JWT_PAYLOAD_HANDLER': 'utils.jwt_customize.jwt_payload',
+    'JWT_AUTH_HEADER_PREFIX': 'Bearer',
+    'JWT_VERIFY_EXPIRATION': True,
+    'JWT_LONG_RUNNING_REFRESH_TOKEN': True,
+    'JWT_EXPIRATION_DELTA': timedelta(minutes=5),
+    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=7),
+    # 'JWT_SECRET_KEY': os.environ['DJANGO_SECRET'],
+    'JWT_SECRET_KEY': "dsglf98430634bi",
+    'JWT_ALGORITHM': 'HS256',
 }
 
 AUTHENTICATION_BACKENDS = [
