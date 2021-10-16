@@ -18,14 +18,14 @@ from django.urls import path
 from graphene_django.views import GraphQLView
 
 import books_api.schema
-# from api.schema import schema as api_schema
-# from authenticate.schema import schema as authenticate_schema
+from api.schema import schema as api_schema
+from authenticate.schema import schema as authenticate_schema
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('graphql', GraphQLView.as_view(graphiql=True)),
     path("graphql", GraphQLView.as_view(graphiql=True, schema=books_api.schema.schema)),
-    # path("book", GraphQLView.as_view(graphiql=True, schema=api_schema)),
-    # path("user", GraphQLView.as_view(graphiql=True, schema=authenticate_schema)),
+    path("book", GraphQLView.as_view(graphiql=True, schema=api_schema)),
+    path("user", GraphQLView.as_view(graphiql=True, schema=authenticate_schema)),
 
 ]

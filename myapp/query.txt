@@ -57,13 +57,24 @@ mutation deleteMutation{
 }
 
 
-
 ## We will use TokenAuth to authenticate the User with its username and password and obtain the JSON Web Token.
 mutation {
   tokenAuth(username:"shoumitro", password: "QWERTYU12345678") {
     token
     payload
     refreshExpiresIn
+  }
+}
+
+
+# for => token_auth = graphql_jwt.relay.ObtainJSONWebToken.Field()
+# https://django-graphql-jwt.domake.io/relay.html
+mutation {
+  tokenAuth(input:{username:"shoumitro", password: "QWERTYU12345678"}) {
+    token
+    payload
+    refreshExpiresIn
+
   }
 }
 
@@ -86,10 +97,7 @@ mutation {
 }
 
 
-
-
 # show user list
-
 query {
   users {
     id
