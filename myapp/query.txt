@@ -33,6 +33,31 @@ mutation createMutation {
   }
 }
 
+mutation createMutation {
+  createBook(bookData: {title: "Things Apart", author: "Chinua Achebe", yearPublished: "1985",
+    review: 3, metadata:"{\"is_admin\": true, \"email\": \"albert@example.com\"}"}) {
+    book {
+      title,
+      author,
+      yearPublished,
+      review,
+      metadata
+    }
+  }
+}
+
+mutation createMutation {
+  createBook(bookData: {title: "Things Apart", author: "Chinua Achebe", yearPublished: "1985",
+    review: 3, metadata:"{}"}) {
+    book {
+      title,
+      author,
+      yearPublished,
+      review,
+      metadata
+    }
+  }
+}
 
 ## Updating an existing book
 mutation updateMutation {

@@ -1,6 +1,7 @@
 import graphene
 from graphene_django import DjangoObjectType, DjangoListField
 from .models import Book
+from graphene.types.generic import GenericScalar
 
 
 class BookType(DjangoObjectType):
@@ -26,6 +27,7 @@ class BookInput(graphene.InputObjectType):
     author = graphene.String()
     year_published = graphene.String()
     review = graphene.Int()
+    metadata = GenericScalar()
 
 
 class CreateBookMutation(graphene.Mutation):
@@ -40,7 +42,8 @@ class CreateBookMutation(graphene.Mutation):
             title=book_data.title,
             author=book_data.author,
             year_published=book_data.year_published,
-            review=book_data.review
+            review=book_data.review,
+            metadata=book_data.metadata,
         )
         book_instance.save()
         return CreateBookMutation(book=book_instance)
