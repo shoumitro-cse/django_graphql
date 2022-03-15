@@ -122,6 +122,20 @@ mutation deleteMutation{
   }
 }
 
+mutation deleteMutation {
+  deleteBook(id: 14) {
+    deletedId
+  }
+}
+
+mutation deleteMutation {
+  deleteBook(id: 4) {
+    found,
+    deletedInputId,
+    deletedRawId,
+    deletedId
+  }
+}
 
 ## We will use TokenAuth to authenticate the User with its username and password and obtain the JSON Web Token.
 mutation {

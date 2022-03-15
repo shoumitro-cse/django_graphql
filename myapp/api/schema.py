@@ -22,13 +22,13 @@ class Query(graphene.ObjectType):
         return Book.objects.get(pk=book_id)
 
 
-class BookInput(graphene.InputObjectType):
-    id = graphene.ID()
-    title = graphene.String()
-    author = graphene.String()
-    year_published = graphene.String()
-    review = graphene.Int()
-    metadata = GenericScalar()
+# class BookInput(graphene.InputObjectType):
+#     id = graphene.ID()
+#     title = graphene.String()
+#     author = graphene.String()
+#     year_published = graphene.String()
+#     review = graphene.Int()
+#     metadata = GenericScalar()
 
 
 # class CreateBookMutation(graphene.Mutation):
@@ -72,17 +72,17 @@ class BookInput(graphene.InputObjectType):
 #         return UpdateBookMutation(book=None)
 
 
-class DeleteBookMutation(graphene.Mutation):
-    class Arguments:
-        id = graphene.ID()
-
-    book = graphene.Field(BookType)
-
-    @staticmethod
-    def mutate(root, info, id):
-        book_instance = Book.objects.get(pk=id)
-        book_instance.delete()
-        return None
+# class DeleteBookMutation(graphene.Mutation):
+#     class Arguments:
+#         id = graphene.ID()
+#
+#     book = graphene.Field(BookType)
+#
+#     @staticmethod
+#     def mutate(root, info, id):
+#         book_instance = Book.objects.get(pk=id)
+#         book_instance.delete()
+#         return None
 
 
 class CreateBookMutation(mutations.DjangoCreateMutation):
@@ -91,6 +91,11 @@ class CreateBookMutation(mutations.DjangoCreateMutation):
 
 
 class UpdateBookMutation(mutations.DjangoUpdateMutation):
+    class Meta:
+        model = Book
+
+
+class DeleteBookMutation(mutations.DjangoDeleteMutation):
     class Meta:
         model = Book
 
