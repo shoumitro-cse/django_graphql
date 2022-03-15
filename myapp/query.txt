@@ -59,6 +59,34 @@ mutation createMutation {
   }
 }
 
+mutation createMutation {
+  createBook(input: {title: "Things Apart", author: "Chinua Achebe", yearPublished: "1985",
+    review: 3, metadata:"{}"}) {
+    book {
+      id,
+      title,
+      yearPublished,
+      review,
+      metadata
+
+    }
+  }
+}
+
+mutation createMutation {
+  createBook(input: {title: "Things Apart", author: "Chinua Achebe", yearPublished: "1985",
+    review: 3, metadata:"{\"is_admin\": true, \"email\": \"albert@example.com\"}"}) {
+    book {
+      id,
+      title,
+      yearPublished,
+      review,
+      metadata
+
+    }
+  }
+}
+
 ## Updating an existing book
 mutation updateMutation {
   updateBook(bookData: {id: 6, title: "Things Fall Apart", author: "Chinua Achebe", yearPublished: "1958", review: 5}) {
@@ -71,6 +99,19 @@ mutation updateMutation {
   }
 }
 
+mutation updateMutation {
+  updateBook(id: 14, input: {title: "Things Apart", author: "Chinua Achebe", yearPublished: "1985",
+    review: 3, metadata:"{\"is_admin\": true, \"email\": \"ABC@example.com\"}"}) {
+    book {
+      id,
+      title,
+      yearPublished,
+      review,
+      metadata
+
+    }
+  }
+}
 
 ## Deleting a book
 mutation deleteMutation{

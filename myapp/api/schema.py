@@ -2,6 +2,7 @@ import graphene
 from graphene_django import DjangoObjectType, DjangoListField
 from .models import Book
 from graphene.types.generic import GenericScalar
+from graphene_django_cud import mutations
 
 
 class BookType(DjangoObjectType):
@@ -30,45 +31,45 @@ class BookInput(graphene.InputObjectType):
     metadata = GenericScalar()
 
 
-class CreateBookMutation(graphene.Mutation):
-    class Arguments:
-        book_data = BookInput(required=True)
+# class CreateBookMutation(graphene.Mutation):
+#     class Arguments:
+#         book_data = BookInput(required=True)
+#
+#     book = graphene.Field(BookType)
+#
+#     @staticmethod
+#     def mutate(root, info, book_data=None):
+#         book_instance = Book(
+#             title=book_data.title,
+#             author=book_data.author,
+#             year_published=book_data.year_published,
+#             review=book_data.review,
+#             metadata=book_data.metadata,
+#         )
+#         book_instance.save()
+#         return CreateBookMutation(book=book_instance)
 
-    book = graphene.Field(BookType)
 
-    @staticmethod
-    def mutate(root, info, book_data=None):
-        book_instance = Book(
-            title=book_data.title,
-            author=book_data.author,
-            year_published=book_data.year_published,
-            review=book_data.review,
-            metadata=book_data.metadata,
-        )
-        book_instance.save()
-        return CreateBookMutation(book=book_instance)
-
-
-class UpdateBookMutation(graphene.Mutation):
-    class Arguments:
-        book_data = BookInput(required=True)
-
-    book = graphene.Field(BookType)
-
-    @staticmethod
-    def mutate(root, info, book_data=None):
-
-        book_instance = Book.objects.get(pk=book_data.id)
-
-        if book_instance:
-            book_instance.title = book_data.title
-            book_instance.author = book_data.author
-            book_instance.year_published = book_data.year_published
-            book_instance.review = book_data.review
-            book_instance.save()
-
-            return UpdateBookMutation(book=book_instance)
-        return UpdateBookMutation(book=None)
+# class UpdateBookMutation(graphene.Mutation):
+#     class Arguments:
+#         book_data = BookInput(required=True)
+#
+#     book = graphene.Field(BookType)
+#
+#     @staticmethod
+#     def mutate(root, info, book_data=None):
+#
+#         book_instance = Book.objects.get(pk=book_data.id)
+#
+#         if book_instance:
+#             book_instance.title = book_data.title
+#             book_instance.author = book_data.author
+#             book_instance.year_published = book_data.year_published
+#             book_instance.review = book_data.review
+#             book_instance.save()
+#
+#             return UpdateBookMutation(book=book_instance)
+#         return UpdateBookMutation(book=None)
 
 
 class DeleteBookMutation(graphene.Mutation):
@@ -82,6 +83,16 @@ class DeleteBookMutation(graphene.Mutation):
         book_instance = Book.objects.get(pk=id)
         book_instance.delete()
         return None
+
+
+class CreateBookMutation(mutations.DjangoCreateMutation):
+    class Meta:
+        model = Book
+
+
+class UpdateBookMutation(mutations.DjangoUpdateMutation):
+    class Meta:
+        model = Book
 
 
 class Mutation(graphene.ObjectType):
