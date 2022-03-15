@@ -2,6 +2,8 @@ import graphene
 from graphene_django import DjangoObjectType, DjangoListField
 from .models import Book
 from graphene.types.generic import GenericScalar
+
+# pip install graphene-django-cud==0.10.0
 from graphene_django_cud import mutations
 
 
@@ -104,6 +106,21 @@ class Mutation(graphene.ObjectType):
     create_book = CreateBookMutation.Field()
     update_book = UpdateBookMutation.Field()
     delete_book = DeleteBookMutation.Field()
+
+
+## pip install graphene-django-crud
+# from graphene_django_crud.types import DjangoCRUDObjectType, resolver_hints
+# class BookType(DjangoCRUDObjectType):
+#     class Meta:
+#         model = Book
+#         # exclude_fields = ("password",)
+#         # input_exclude_fields = ("last_login", "date_joined")
+#
+#
+# class Mutation(graphene.ObjectType):
+#     create_book = BookType.CreateField()
+#     update_book = BookType.UpdateField()
+#     delete_book = BookType.DeleteField()
 
 
 schema = graphene.Schema(query=Query, mutation=Mutation)
