@@ -108,9 +108,9 @@ class Mutation(graphene.ObjectType):
     delete_book = DeleteBookMutation.Field()
 
 
-## pip install graphene-django-crud
+# # pip install graphene-django-crud
 # from graphene_django_crud.types import DjangoCRUDObjectType, resolver_hints
-# class BookType(DjangoCRUDObjectType):
+# class BookType1(DjangoCRUDObjectType):
 #     class Meta:
 #         model = Book
 #         # exclude_fields = ("password",)
@@ -118,9 +118,9 @@ class Mutation(graphene.ObjectType):
 #
 #
 # class Mutation(graphene.ObjectType):
-#     create_book = BookType.CreateField()
-#     update_book = BookType.UpdateField()
-#     delete_book = BookType.DeleteField()
+#     create_book = BookType1.CreateField()
+#     update_book = BookType1.UpdateField()
+#     delete_book = BookType1.DeleteField()
 
 
 schema = graphene.Schema(query=Query, mutation=Mutation)
